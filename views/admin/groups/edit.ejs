@@ -1,0 +1,58 @@
+<%- include('../../partials/header.ejs') %> <%-
+include('../../partials/homenavbar.ejs') %>
+
+<div class="container">
+  <hr />
+  <div class="card">
+    <div class="card-header bg-light">
+      <h2>Alteração de Grupos</h2>
+    </div>
+    <div class="card-body">
+      <form method="post" action="/groups/update">
+        <input type="hidden" value="<%- group.id %>" name="id" />
+        <div class="row"></div>
+        <div class="col-md-6">
+          <label for="">Título do Grupo</label>
+          <input
+            type="text"
+            name="title"
+            placeholder="titulo do grupo"
+            style="background-color: rgb(241, 180, 101); font-weight: bold"
+            required
+            class="form-control"
+            value="<%- group.title %>"
+          />
+        </div>
+        <br />
+        <div class="row">
+          <br />
+        </div>
+        <br>
+        <div class="col-md-2">
+          <input type="checkbox" name="insumo" <% if(group.insumo) { %> checked <% } %> > 
+          <label for="">Insumo</label>
+        </div>
+        <br />
+
+        <div class="row"></div>
+
+        <br />
+
+        <div class="form-group col-md-1">
+          <button class="btn btn-danger">
+            <span class="glyphicon glyphicon-ok"></span> Salvar
+          </button>
+        </div>
+
+        <div class="form-group col-md-1">
+          <a href="/admin/groups" class="btn btn-success">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>
+            Voltar</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partials/footer.ejs') %>

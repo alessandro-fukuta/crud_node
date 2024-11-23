@@ -1,0 +1,74 @@
+<%- include('../../partials/header.ejs') %> 
+<%- include('../../partials/homenavbar.ejs') %>
+
+<div class="container">
+  <hr />
+  <div class="card">
+    <div class="card-header bg-light">
+        <h3 style="margin-left:20px;"> <span class="glyphicon glyphicon-user"></span> Abertura de Serviço</h3>
+    </div>
+    <br>
+    <div class="card-body" >
+      <form method="post" action="/services/open">
+        <div class="row"></div>
+        <div class="col-md-6">
+              <label for="">Cliente</label>
+              <select class="form-control" autofocus name="clienteId">
+                <option value="1">Consumidor Balcão</option>
+              </select>
+              <br />
+        </div>    
+        <div class="row"><br /></div>
+       
+        
+        <div class="form-group col-md-3" >
+          <label for="">Descrição/Produto/Equipamento</label>
+          <input type="text" class="form-control" name="description">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="">Identificação / Serial</label>
+          <input type="text" class="form-control" name="identification">
+        </div>
+        <div class="row"><br /></div>
+        <div class="form-group col-md-6">
+          <label for="">Motivo - Defeito - Reclamação</label>
+          <textarea name="complaint" style="height: 100px;" class="form-control"></textarea>
+        </div>
+        <div class="row"><br /></div>
+        <div class="form-group col-md-2" style="margin-left:15px;border:1px solid gray; border-radius: 5px; height: 75px;">
+          <label for="">Previsão</label>
+          <input type="date" name="forecast" class="form-control">
+        </div>
+        
+        <div class="form-group col-md-2"></div>
+
+        <div class="form-group col-md-2" style="width:160px;border:1px solid gray; border-radius: 5px; height: 75px;">
+          <label for="">Tipo de Serviço</label><br>
+          <input class="form-check-input" type="checkbox">
+          <label class="form-check-label" for="flexCheckChecked">
+            Em Garantia
+          </label>
+        </div>
+
+        <div class="row"></div>
+
+        <div class="form-group col-md-2">
+          <button class="btn btn-danger">
+            <span class="glyphicon glyphicon-ok"></span> Abrir Serviço
+          </button>
+        </div>
+
+        <div class="form-group col-md-3"></div>
+
+        <div class="form-group col-md-2">
+          <a href="/admin/technicians" class="btn btn-success">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>
+            Voltar</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partials/footer.ejs') %>

@@ -1,0 +1,94 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/homenavbar.ejs') %>
+
+
+<div class="container">
+    <h3 style="margin-left:20px;"> <span class="glyphicon glyphicon-user"></span> Novo Fornecedor</h3>
+    <form method="post" action="/suppliers/save">
+        <div class="form-group col-md-6">
+              <label>Nome</label>
+              <input type="text" class="form-control" name="nome"  style="background-color: rgb(241, 180, 101); font-weight: bold;" > 
+        </div>
+        <div class="form-group col-md-3">
+              <label for="inputPassword4">CPF/CNPJ</label>
+              <input type="text" class="cpfOuCnpj form-control" name="cpf_cnpj" placeholder="Nº do CNPJ ou CPF" style="background-color: rgb(243, 223, 197); font-weight: bold;">
+        </div>
+        <div class="form-group col-md-3">
+                <label for="inputPassword4">RG / Inscrição Estadual</label>
+                <input type="text" class="form-control" name="rg_ie" placeholder="Nº da Inscrição Estadual ou RG" style="background-color: rgb(243, 223, 197); font-weight: bold;">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputAddress2">Cep</label>
+            <input type="text" class="form-control" id="cep" name="cep" placeholder="Cep" size="10" maxlength="9" onblur="pesquisacep(this.value);" style="background-color: rgb(243, 223, 197); font-weight: bold;">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputAddress">Endereço</label>
+            <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Rua x Nº 0" style="background-color: rgb(243, 223, 197); font-weight: bold;">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputAddress2">Bairro</label>
+            <input type="text" class="form-control" id="bairro"  name="bairro" placeholder="Bairo/vila/sitio/chácara/fazenda" style="background-color: rgb(243, 223, 197); font-weight: bold;">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputAddress2">Cidade</label>
+            <input type="text" class="form-control" id="cidade"  name="cidade" placeholder="nome da cidade" style="background-color: rgb(243, 223, 197); font-weight: bold;">
+        </div>
+        <div class="form-group col-md-1">
+            <label for="inputAddress2">Estado</label>
+            <input type="text" class="form-control" id="estado"  name="estado" placeholder="Estado" style="background-color: rgb(243, 223, 197); font-weight: bold;">
+        </div>
+        
+        <div class="form-group col-md-2">
+            <label for="inputAddress2">Celular</label>
+            <input type="text" class="form-control" id="celular" name="celular" placeholder="ex: (16) 99999-9999" style="background-color: rgb(243, 223, 197); font-weight: bold;">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputAddress2">Telefone</label>
+            <input type="text" class="form-control" id="telefone" name="telefone" placeholder="ex: (16) 99999-9999" style="background-color: rgb(243, 223, 197); font-weight: bold;">
+        </div>
+        <div class="form-group col-md-8">
+            <label for="inputAddress2">Email</label>
+            <input type="text" class="form-control" name="email" placeholder="ex: cliente@email.com" style="background-color: rgb(243, 223, 197); font-weight: bold;">
+        </div>
+
+   
+        <div class="row">
+
+        </div>
+
+     
+        <div class="form-group col-md-1">
+            <button class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Salvar</button>
+        </div>
+        <div class="form-group col-md-1">
+            <a href="/admin/suppliers" class="btn btn-success"><span class="glyphicon glyphicon-circle-arrow-left"></span> Voltar</a>
+        </div> 
+
+        
+    </form>
+
+
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        var options = {
+        onKeyPress: function (cpf, ev, el, op) {
+            var masks = ['000.000.000-000', '00.000.000/0000-00'];
+            $('.cpfOuCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+            }
+        }
+        $('.cpfOuCnpj').length > 11 ? $('.cpfOuCnpj').mask('00.000.000/0000-00', options) : $('.cpfOuCnpj').mask('000.000.000-00#', options);
+        $('#cep').mask('00000-000');
+        $('#telefone').mask('(00) 0000-0000');
+        $('#celular').mask('(00) 00000-0000');
+        $('.money2').mask("#.##0,00", {reverse: true});
+     
+    
+    });
+    
+</script>
+
+<%- include('../../partials/footer.ejs') %>
+

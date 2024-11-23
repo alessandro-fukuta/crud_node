@@ -1,0 +1,62 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/homenavbar.ejs') %>
+
+
+<div class="container">
+
+    <h3 style="margin-left:0px;"> 
+        <span class="glyphicon glyphicon-user"></span> 
+        Clientes
+    </h3>
+    
+    <a class="btn btn-primary" href="/admin/clientes/new">
+        <span class="glyphicon glyphicon-plus"></span> Novo Cliente
+    </a>
+   
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr style="text-align: center;">
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th>Celular</th>
+                <th>Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <% clientes.forEach(cliente => { %>
+                    <tr>
+                        <th><%= cliente.id %></th>
+                        <th><%= cliente.nome %></th>
+                        <th><%= cliente.cidade %></th>
+                        <th><%= cliente.celular %></th>
+                        <th>
+                        <a href="/admin/clientes/edit/<%= cliente.id %>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                        <!--
+                        <form method="POST" action="/admin/clientes/delete" style="display:inline;" onsubmit="ConfirmaExclusao(event, this)">
+                              <input type="hidden" name="id" value="<%= clientes.id %>">
+                              <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Deletar</button>
+                        </form>
+                        -->
+                        </th>
+                    </tr>
+                <% }) %>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../../partials/footer.ejs') %>
+
+
+<script>
+    function ConfirmaExclusao(event, form){
+        event.preventDefault(); // impede que o formulario seja submetido ou enviado
+        var decision = confirm("Deseja a exclusão deste cliente ?");
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
+

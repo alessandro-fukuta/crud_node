@@ -1,0 +1,49 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/homenavbar.ejs') %>
+
+<div class="container">
+    <h2>Grupos de Produtos</h2>
+    <a class="btn btn-primary" href="/admin/groups/new">Novo Grupo</a>
+    <hr>
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr style="text-align: center;">
+                <th>ID</th>
+                <th style="width: 350px;">Título</th>
+                <th style="text-align: right; width: 0.2em;">Insumo</th>
+                <th style="text-align: right;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <% groups.forEach(group => { %>
+                    <tr>
+                        <th><%= group.id %></th>
+                        <th><%= group.title %></th> 
+                        <th style="text-align: center;"><% if(group.insumo) { %> Sim <% } %> </th>
+                        <th style="text-align: right;">
+                        <a href="/admin/groups/edit/<%= group.id %>" class="btn btn-warning btn-sm">Editar</a>
+                        <form method="POST" action="/admin/groups/delete" style="display:inline;" onsubmit="ConfirmaExclusao(event, this)">
+                              <input type="hidden" name="id" value="<%= group.id %>">
+                              <button class="btn btn-danger btn-sm">Deletar</button>
+                        </form>
+                        </th>
+                    </tr>
+                <% }) %>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../../partials/footer.ejs') %>
+
+
+<script>
+    function ConfirmaExclusao(event, form){
+        event.preventDefault(); // impede que o formulario seja submetido ou enviado
+        var decision = confirm("Deseja a exclusão desta categoria ?");
+        if(decision){
+            form.submit();
+        }
+    }
+</script>

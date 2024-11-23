@@ -1,0 +1,73 @@
+<%- include('../../partials/header.ejs') %> <%-
+include('../../partials/homenavbar.ejs') %>
+
+<div class="container">
+  <hr />
+  <div class="card">
+    <div class="card-header bg-light">
+        <h3 style="margin-left:20px;"> <span class="glyphicon glyphicon-user"></span> Alterar Técnico</h3>
+    </div>
+    <br>
+    <div class="card-body">
+      <form method="post" action="/technicians/update">
+        <input type="hidden" name="id" value = "<%= technician.id %>">
+        <div class="row"></div>
+        <div class="col-md-6">
+          <label for="">Nome do Técnico</label>
+          <input
+            type="text"
+            name="nome"
+            placeholder="nome completo"
+            required
+            class="form-control"
+            value="<%= technician.nome %>"
+          />
+        </div>
+        <br />
+        <div class="row">
+          <br />
+        </div>
+        <br />
+        <div class="col-md-2">
+          <label for="">Celular</label>
+          <input
+            type="text"
+            name="celular"
+            id="celular"
+            required
+            class="celular form-control"
+            style="text-align: right;"
+            value="<%= technician.celular %>"
+          />
+        </div>
+        <br />
+
+        <div class="row"></div>
+
+        <div class="col-md-2">
+             <input type="checkbox" style="margin-top:20px; margin-bottom:20px;" name="ativo" <% if(technician.ativo) { %> checked <% } %> >
+             <label for="">Ativo</label>
+        </div>
+        
+        <br />
+
+        <div class="row"></div>
+
+        <div class="form-group col-md-1">
+          <button class="btn btn-danger">
+            <span class="glyphicon glyphicon-ok"></span> Salvar
+          </button>
+        </div>
+
+        <div class="form-group col-md-1">
+          <a href="/admin/technicians" class="btn btn-success">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>
+            Voltar</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partials/footer.ejs') %>

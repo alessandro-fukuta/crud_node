@@ -1,0 +1,62 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/homenavbar.ejs') %>
+
+
+<div class="container">
+
+    <h3 style="margin-left:0px;"> 
+        <span class="glyphicon glyphicon-user"></span> 
+        Fornecedores
+    </h3>
+    
+    <a class="btn btn-primary" href="/admin/suppliers/new">
+        <span class="glyphicon glyphicon-plus"></span> Novo supplier
+    </a>
+   
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr style="text-align: center;">
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th>Celular</th>
+                <th>Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <% suppliers.forEach(supplier => { %>
+                    <tr>
+                        <th><%= supplier.id %></th>
+                        <th><%= supplier.nome %></th>
+                        <th><%= supplier.cidade %></th>
+                        <th><%= supplier.celular %></th>
+                        <th>
+                        <a href="/admin/suppliers/edit/<%= supplier.id %>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                        <!--
+                        <form method="POST" action="/admin/suppliers/delete" style="display:inline;" onsubmit="ConfirmaExclusao(event, this)">
+                              <input type="hidden" name="id" value="<%= supplier.id %>">
+                              <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Deletar</button>
+                        </form>
+                        -->
+                        </th>
+                    </tr>
+                <% }) %>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../../partials/footer.ejs') %>
+
+
+<script>
+    function ConfirmaExclusao(event, form){
+        event.preventDefault(); // impede que o formulario seja submetido ou enviado
+        var decision = confirm("Deseja a exclusão deste supplier ?");
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
+

@@ -1,0 +1,160 @@
+<%- include("../../partials/header.ejs") %> <%-
+include("../../partials/homenavbar.ejs") %>
+
+<div class="container">
+  <div class="titulo">Novo Produto</div>
+
+  <form action="/admin/products/save" method="post">
+    <div clas="form-group row"></div>
+    <div class="form-group col-md-3">
+      <label for="">Código de Fábrica</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Factory Code"
+        name="factory-code"
+        autofocus
+      />
+    </div>
+    <div class="form-group col-md-2">
+      <label for="">Código de Barras</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="CodeBar"
+        name="codebar"
+      />
+    </div>
+    <div class="form-group col-md-6">
+        <label for="">Descrição do Produto</label>
+        <input 
+            type="text"
+            class="form-control"
+            placeholder="Description"
+            name="full_description"
+        />
+    </div>
+    <div class="form-group col-md-1">
+        <label for="">Unidade</label>
+        <input 
+            type="text"
+            class="form-control"
+            placeholder="Unity"
+            name="unitypro"
+        \>
+    </div>
+    <div class="form-group col-md-4">
+        <label for="">Descrição resumida</label>
+        <input 
+            type="text"
+            class="form-control"
+            placeholder="Resume"
+            name="resume_description"
+        \>
+    </div>
+    <div class="form-group col-md-2">
+        <label for="">Preço de Custo</label>
+        <input 
+            type="text"
+            class="money2 form-control"
+            placeholder="0,00"
+            name="current_cost"
+            style="text-align: right;"
+            value="0,00"
+        \>
+    </div>
+    <div class="form-group col-md-2">
+        <label for="">Custo Médio</label>
+        <input 
+            type="text"
+            readonly
+            class="money2 form-control"
+            placeholder="0,00"
+            name="average_cost"
+            style="text-align: right;"
+            value="0,00"
+        \>
+    </div>
+    <div class="form-group col-md-2">
+        <label for="">Última Compra</label>
+        <input 
+            type="date"
+            readonly
+            class="form-control"
+            placeholder="00/00/0000"
+            name="last_purchase"
+            style="text-align: right;"
+            value="0,00"
+        \>
+    </div>
+    <div class="form-group col-md-2">
+        <label for="">Última Venda</label>
+        <input 
+            type="date"
+            readonly
+            class="form-control"
+            placeholder="00/00/0000"
+            name="last_exit"
+            style="text-align: right;"
+            value="0,00"
+        \>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="">Grupo</label>
+        <select name="group_id" id="group_id" class="form-control">
+            <% groups.forEach(group => { %>
+                <option value="<%- group.id %>"><%- group.title %></option>
+            <% }) %>
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="">Marca</label>
+        <select name="brand_id" id="brand_id" class="form-control">
+            <% brands.forEach(brand => { %>
+                <option value="<%- brand.id %>"><%- brand.title %></option>
+            <% }) %>
+        </select>
+    </div>
+    <div class="form-group col-md-2">
+        <label for="">Preço de Venda</label>
+        <input 
+            type="text"
+            class="money2 form-control"
+            placeholder="0,00"
+            name="price"
+            style="text-align: right;"
+            value="0,00"
+        \>
+    </div>
+
+    <div clas="row"></div>
+
+    <div class="form-group col-md-4">
+        <label for="">Ultimo Cliente</label>
+        <input 
+            type="text"
+            class="form-control"
+            placeholder=""
+            readonly
+            name="last_client"
+        \>
+    </div>
+
+    <div class="row"></div>
+    <div class="form-group col-md-1">
+      <button class="btn btn-danger">
+        <span class="glyphicon glyphicon-ok"></span> Salvar
+      </button>
+    </div>
+    <div class="form-group col-md-1">
+      <a href="/admin/products" class="btn btn-success"
+        ><span class="glyphicon glyphicon-circle-arrow-left"></span> Voltar</a
+      >
+    </div>
+
+
+
+  </form>
+</div>
+
+<%- include("../../partials/footer.ejs") %>

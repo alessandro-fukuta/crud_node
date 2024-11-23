@@ -1,0 +1,317 @@
+<%- include('../../partials/header.ejs') %> 
+<%- include('../../partials/homenavbar.ejs') %>
+
+<div class="container">
+  <h3 style="margin-left:20px;"> <span class="glyphicon glyphicon-user"></span> Alterar Cliente</h3>
+  <form method="post" action="/clientes/update">
+    <input type="hidden" value="<%= clientes.id %>" name="id" />
+    <div class="form-group col-md-6">
+      <label>Nome</label>
+      <input
+        type="text"
+        style="background-color: rgb(241, 180, 101); font-weight: bold"
+        class="form-control"
+        name="nome"
+        value="<%- clientes.nome %>"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="">Categoria</label>
+      <select name="categoryId" id="categoryId" class="form-control" style="background-color: rgb(243, 223, 197); font-weight: bold;">
+         <% category.forEach(categorie => { %>
+             <option value="<%- categorie.id %>" <% if (categorie.id == clientes.categoryId) { %> selected <% } %> ><%- categorie.title %></option>
+         <% }) %>
+      </select>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputPassword4">CPF/CNPJ</label>
+      <input
+        type="text"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        class="form-control"
+        name="cpf_cnpj"
+        value="<%- clientes.cpf_cnpj %>"
+        placeholder="Nº do CNPJ ou CPF"
+      />
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputPassword4">RG / Inscrição Estadual</label>
+      <input
+        type="text"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        class="form-control"
+        name="rg_ie"
+        value="<%- clientes.rg_ie %>"
+        placeholder="Nº da Inscrição Estadual ou RG"
+      />
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputAddress2">Cep</label>
+      <input
+        type="text"
+        class="form-control"
+        id="cep"
+        name="cep"
+        placeholder="Cep"
+        size="10"
+        maxlength="9"
+        onblur="pesquisacep(this.value);"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        value="<%- clientes.cep %>"
+      />
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputAddress">Endereço</label>
+      <input
+        type="text"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        class="form-control"
+        id="endereco"
+        name="endereco"
+        placeholder="Rua x Nº 0"
+        value="<%- clientes.endereco %>"
+      />
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputAddress2">Bairro</label>
+      <input
+        type="text"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        class="form-control"
+        id="bairro"
+        name="bairro"
+        placeholder="Bairo/vila/sitio/chácara/fazenda"
+        value="<%- clientes.bairro %>"
+      />
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputAddress2">Cidade</label>
+      <input
+        type="text"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        class="form-control"
+        id="cidade"
+        name="cidade"
+        placeholder="nome da cidade"
+        value="<%- clientes.cidade %>"
+      />
+    </div>
+    <div class="form-group col-md-1">
+      <label for="inputAddress2">Estado</label>
+      <input
+        type="text"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        class="form-control"
+        id="estado"
+        name="estado"
+        placeholder="Estado"
+        value="<%- clientes.estado %>"
+      />
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputAddress2">Celular</label>
+      <input
+        type="text"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        class="form-control"
+        name="celular"
+        id="celular"
+        placeholder="ex: (16) 99999-9999"
+        value="<%- clientes.celular %>"
+      />
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputAddress2">Telefone</label>
+      <input
+        type="text"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        class="form-control"
+        name="telefone"
+        placeholder="ex: (16) 99999-9999"
+        value="<%- clientes.telefone %>"
+      />
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputAddress2">Gênero</label>
+      <select
+        name="genero"
+        id="genero"
+        name="genero"
+        class="form-control"
+        style="background-color: rgb(243, 223, 197); font-weight: bold">
+      
+        <% if(clientes.genero == "F") { %>
+            <option value = "F" selected>Feminino</option>
+            <option value = "M">Masculino</option>
+        <% } else { %>
+            <option value = "M" selected>Masculino</option>
+            <option value = "F">Feminino</option>
+        <% } %>
+
+      </select>
+    </div>
+
+    <div class="form-group col-md-8">
+      <label for="inputAddress2">Email</label>
+      <input
+        type="text"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        class="form-control"
+        name="email"
+        placeholder="ex: cliente@email.com"
+        value="<%- clientes.email %>"
+      />
+    </div>
+    
+    <div class="form-group col-md-4">
+      <label for="inputAddress2">Nome do Pai</label>
+      <input
+        type="text"
+        class="form-control"
+        name="nomepai"
+        placeholder="Nome completo do Pai"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        value="<%- clientes.nomepai %>"
+      />
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputAddress2">Nome da Mãe</label>
+      <input
+        type="text"
+        class="form-control"
+        name="nomemae"
+        placeholder="Nome completo da Mãe"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        value="<%- clientes.nomemae %>"
+      />
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputAddress2">Nascimento</label>
+      <input
+        type="date"
+        class="form-control"
+        name="nascimento"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        value="<%- clientes.nascimento %>"
+      />
+    </div>
+
+    <div class="form-group col-md-1">
+      <label for="inputAddress2">Dia</label>
+      <select
+        name="melhordia"
+        id="melhordia"
+        class="form-control"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        value="<%- clientes.melhordia %>"
+      >
+        <option value="01" <% if(clientes.melhordia==1) {%>selected <% } %> >01</option>
+        <option value="02" <% if(clientes.melhordia==2) {%>selected <% } %> >02</option>
+        <option value="03" <% if(clientes.melhordia==3) {%>selected <% } %> >03</option>
+        <option value="04" <% if(clientes.melhordia==4) {%>selected <% } %> >04</option>
+        <option value="05" <% if(clientes.melhordia==5) {%>selected <% } %> >05</option>
+        <option value="06" <% if(clientes.melhordia==6) {%>selected <% } %> >06</option>
+        <option value="07" <% if(clientes.melhordia==7) {%>selected <% } %> >07</option>
+        <option value="08" <% if(clientes.melhordia==8) {%>selected <% } %> >08</option>
+        <option value="09" <% if(clientes.melhordia==9) {%>selected <% } %> >09</option>
+        <option value="10" <% if(clientes.melhordia==10) {%>selected <% } %> >10</option>
+        <option value="11" <% if(clientes.melhordia==11) {%>selected <% } %> >11</option>
+        <option value="12" <% if(clientes.melhordia==12) {%>selected <% } %> >12</option>
+        <option value="13" <% if(clientes.melhordia==13) {%>selected <% } %> >13</option>
+        <option value="14" <% if(clientes.melhordia==14) {%>selected <% } %> >14</option>
+        <option value="15" <% if(clientes.melhordia==15) {%>selected <% } %> >15</option>
+        <option value="16" <% if(clientes.melhordia==16) {%>selected <% } %> >16</option>
+        <option value="17" <% if(clientes.melhordia==17) {%>selected <% } %> >17</option>
+        <option value="18" <% if(clientes.melhordia==18) {%>selected <% } %> >18</option>
+        <option value="19" <% if(clientes.melhordia==19) {%>selected <% } %> >19</option>
+        <option value="20" <% if(clientes.melhordia==20) {%>selected <% } %> >20</option>
+        <option value="21" <% if(clientes.melhordia==21) {%>selected <% } %> >21</option>
+        <option value="22" <% if(clientes.melhordia==22) {%>selected <% } %> >22</option>
+        <option value="23" <% if(clientes.melhordia==23) {%>selected <% } %> >23</option>
+        <option value="24" <% if(clientes.melhordia==24) {%>selected <% } %> >24</option>
+        <option value="25" <% if(clientes.melhordia==25) {%>selected <% } %> >25</option>
+        <option value="26" <% if(clientes.melhordia==26) {%>selected <% } %> >26</option>
+        <option value="27" <% if(clientes.melhordia==27) {%>selected <% } %> >27</option>
+        <option value="28" <% if(clientes.melhordia==28) {%>selected <% } %> >28</option>
+        <option value="29" <% if(clientes.melhordia==29) {%>selected <% } %> >29</option>
+        <option value="30" <% if(clientes.melhordia==30) {%>selected <% } %> >30</option>
+        <option value="31" <% if(clientes.melhordia==31) {%>selected <% } %> >31</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputAddress2">Crédito</label>
+      <input
+        type="text"
+        class="money2 form-control"
+        name="credito"
+        style="
+          background-color: rgb(243, 223, 197);
+          font-weight: bold;
+          text-align: right;
+        "
+        value="<%- clientes.credito %>"
+      />
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputAddress2">CNH</label>
+      <input
+        type="text"
+        class="form-control"
+        name="cnh"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        value="<%- clientes.cnh %>"
+      />
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputAddress2">Categoria CNH</label>
+      <input
+        type="text"
+        maxlength="3"
+        class="form-control"
+        name="cnh_categoria"
+        style="background-color: rgb(243, 223, 197); font-weight: bold"
+        value="<%- clientes.cnh_categoria %>"
+      />
+    </div>
+
+    <div class="row"></div>
+    <div class="form-group col-md-1">
+      <button class="btn btn-danger">
+        <span class="glyphicon glyphicon-ok"></span> Salvar
+      </button>
+    </div>
+    <div class="form-group col-md-1">
+      <a href="/admin/clientes" class="btn btn-success"
+        ><span class="glyphicon glyphicon-circle-arrow-left"></span> Voltar</a
+      >
+    </div>
+  </form>
+</div>
+
+<%- include('../../partials/footer.ejs') %>
+
+<script>
+  $(document).ready(function () {
+    var options = {
+      onKeyPress: function (cpf, ev, el, op) {
+        var masks = ["000.000.000-000", "00.000.000/0000-00"];
+        $(".cpfOuCnpj").mask(cpf.length > 14 ? masks[1] : masks[0], op);
+      },
+    };
+    $(".cpfOuCnpj").length > 11
+      ? $(".cpfOuCnpj").mask("00.000.000/0000-00", options)
+      : $(".cpfOuCnpj").mask("000.000.000-00#", options);
+    $("#cep").mask("00000-000");
+    $("#telefone").mask("(00) 0000-0000");
+    $("#celular").mask("(00) 00000-0000");
+    $(".money2").mask("#.##0,00", { reverse: true });
+  });
+</script>
+
