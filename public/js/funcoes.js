@@ -1,4 +1,14 @@
-   
+
+// FUNÇAO PARA TRANSFORMAR VALORES COM ( , ) EM ( . )
+// EXEMPLO: 139,90  =:> 139.90
+
+    function transforma_valor(pvalor) {
+        var credito = pvalor.toString(); 
+        credito = credito.replace(".", ""); // transforma valor em numero double
+        credito = credito.replace(",", ".");
+        credito = parseFloat(credito);
+        return credito;
+    }
     
    
    function limpa_formulário_cep() {
@@ -71,4 +81,6 @@
     
 
 //module.exports = {limpa_formulário_cep,meu_callback,pesquisacep}
-    
+  
+module.exports	= {transforma_valor}
+
