@@ -15,6 +15,20 @@ router.get("/admin/brands", (req,res) => {
 
 });
 
+router.get("/brands",(req,res) => {
+
+    Brands.findAll({
+        order:['title']
+    }).then(brands => {
+        res.statusCode=200;
+        res.json(brands);
+    })
+
+
+})
+
+
+
 router.get("/admin/brands/new", (req,res) => {
     res.render("admin/brands/new");
 })

@@ -41,6 +41,20 @@ router.get("/admin/categories", (req,res) => {
  
 });
 
+// rota api - retorna as categorias
+router.get("/categories",(req,res) => {
+
+    Category.findAll({
+        order:['title']
+    }).then(categories => {
+        res.statusCode=200;
+        res.json(categories);
+    })
+
+
+})
+
+
 // rota para excluir-deletar
 
 router.post("/admin/categories/delete", (req,res) => {

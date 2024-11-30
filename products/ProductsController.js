@@ -21,6 +21,19 @@ router.get("/admin/products", (req,res) => {
   
 });
 
+router.get("/products",(req,res) => {
+
+    Products.findAll({
+        include: [{model: Groups}],
+        include: [{model: Brands}],
+        order:['full_description']
+    }).then(products => {
+        res.statusCode=200;
+        res.json(products);
+    })
+
+
+})
 
 // new
 
